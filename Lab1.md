@@ -65,52 +65,105 @@ Trong hệ thống Payroll System, một số cơ chế quan trọng cần đư�
 
 Trong ca sử dụng Payment, chúng ta xác định các lớp phân tích chính như sau:
 
-1. **Nhân Viên (Employee)**: Đại diện cho nhân viên, bao gồm thông tin cá nhân và thông tin lương.
-   - **Thuộc tính**: `mãNhânViên`, `tên`, `phươngThứcThanhToán`, `lươngTheoGiờ`, `lươngCốĐịnh`, `tỷLệHoaHồng`.
+1. **NhanVien (Employee)**: Đại diện cho nhân viên, bao gồm thông tin cá nhân và thông tin lương.
+   - **Thuộc tính**: `maNhanVien`, `ten`, `phuongThucThanhToan`, `luongTheoGio`, `luongCoDinh`, `tyLeHoaHong`.
    - **Nhiệm vụ**: Lưu trữ và cung cấp thông tin cần thiết để tính toán lương.
 
-2. **Bảng Lương (Payroll)**: Chịu trách nhiệm tính toán lương cho nhân viên.
-   - **Thuộc tính**: `ngàyThanhToán`, `tổngLương`.
-   - **Nhiệm vụ**: Tính toán tổng lương dựa trên thông tin từ lớp Nhân Viên.
+2. **BangLuong (Payroll)**: Chịu trách nhiệm tính toán lương cho nhân viên.
+   - **Thuộc tính**: `ngayThanhToan`, `tongLuong`.
+   - **Nhiệm vụ**: Tính toán tổng lương dựa trên thông tin từ lớp NhanVien.
 
-3. **Phương Thức Thanh Toán (PaymentMethod)**: Đại diện cho các phương thức thanh toán mà nhân viên có thể chọn.
-   - **Thuộc tính**: `loạiPhươngThức` (ví dụ: `ChuyểnKhoản`, `BưuĐiện`, `NhậnTạiVănPhòng`).
+3. **PhuongThucThanhToan (PaymentMethod)**: Đại diện cho các phương thức thanh toán mà nhân viên có thể chọn.
+   - **Thuộc tính**: `loaiPhuongThuc` (ví dụ: `ChuyenKhoan`, `BuuDien`, `NhanTaiVanPhong`).
    - **Nhiệm vụ**: Quản lý các phương thức thanh toán cho nhân viên.
 
-4. **Xử Lý Thanh Toán (PaymentProcessor)**: Thực hiện các bước thanh toán.
-   - **Thuộc tính**: `mãGiaoDịch`, `trạngThái`.
+4. **XuLyThanhToan (PaymentProcessor)**: Thực hiện các bước thanh toán.
+   - **Thuộc tính**: `maGiaoDich`, `trangThai`.
    - **Nhiệm vụ**: Thực hiện giao dịch thanh toán và cập nhật trạng thái giao dịch.
 
-### Biểu Đồ Sequence
-![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aO9Vnk55UM6PXrVbSHK09JAJCmiIyqeKd1xkMfoNxdDimx65UUaeCX4FTw_rERmt92CnBoCa__12L7q16H0j8HaFTwzCHbB4XR18GTSErNmhXSh3gqgT7-vQNehGeQ79XQ88f0jXXfL2piDTIoj3CWvl0LgMcOUGmQOFbwkWfk2I1Xg5ImgB7qgAW7nKzTZSWX5-LWeLw490VHZASDW8jklmmapY0wu476PEXnVcX-3G3m000F__0m00)
-### Biểu Đồ lớp
-![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bToJc9niO9Vnk55UM6PXrVbALHpAIWev1vUZ12oKWWkAShCImT9bA3n2pAERJYsC2yz9EFXxfN98Hc9UHaX-OSN0jK4u901wSg1IQNcksS-t3tNIY4blpGf9nL9pldXxeb79ZpStPsNWInRyd3tTf-7kzizyXCz7kwUd9SEbwpbWlh5wU6knNdfFX1Z8Dx9Ip-ye1BPSIw99J3ZfiBLejXpU6rU1bHSGnFJ4bo-WzYNa_zmry9CL3NmK8ER4V5mzrgVmtlHDGF3tZqpCTy5wFVa39ImBmAQ2ZBkyC9CPF4AT7D03YxBpqm1MOKKixgwThXZ1JNKG4eHEh58OhYToo4rBmMKe000003__mC0)
 
-## 4. Phân Tích Ca Sử Dụng Maintain Timecard
+### Biểu Đồ Sequence
+![](https://www.planttext.com/api/plantuml/png/V55DIiD05DxFARuBU84ifBGkYnGQf5qEqo4paBx4T4ReihWKGH0F44H48U0wit0HwJtU2Ro22P9AjBZztlVB-mpleusJXVFhL3ZhKesnvN3jyN77uHvpVUarAOs9n9n3XJCEJvHW9hThJKu8gLnMuDn8kh2QHDvQMMLpIGuBFzt6xS74cHnUnfAIgSye6Q0pqq6nyUf79Nfdd9mE3ICicrSFnVMpX-jGkAmfIGnOdUoG5Y5kgfu7n-6XNPBkt_Pbs-J0Ef8K5rm_ueh3xhVgJzYH4H4cXiCj8JVVghOkXnVrV-j-U8H5KogGuReY95PcM76uKKQ8aQPLzxSl0000__y30000)
+### Biểu Đồ lớp
+![](https://www.planttext.com/api/plantuml/png/R5AnRSCm4EmvnI_W1Lm4XYt4BfJ0W8N0xKCcH2BIqv1UXH2ayW81KgPEcGbOfCaYd20hX894MRB2ylxk_kx1N_kzgXXBhejSLC-Qe3IL5Amvbx3Mpbvg-7bpzXrYPp_Ei44uEFi5aREVbC4Ucq8I2v7cM5Nmg92Uj2Hu4T2-0WEoX0ENch8EvrlWh6f3MQBgDF42bHZqXDxyGR8ofuwNTpHfjjeiuJutoAF1naIQr0Jd9fOxWpi_3VXhIBj6ok9M5-9IXireVuGiUnVJCsSU-tdmuEQ9-ZeU-WxIOnqtCr61Mus-HgfkBbPYwuDwx3ESUx6ukxQPmly45DFDBIj8X5X9Elc_y0S00F__0m00)
+
+# 4. Phân Tích Ca Sử Dụng Maintain Timecard
 
 ### Các Lớp Phân Tích Cho Ca Sử Dụng Maintain Timecard
 
 Trong ca sử dụng Maintain Timecard, chúng ta xác định các lớp phân tích chính như sau:
 
-1. **Nhân Viên (Employee)**: Đại diện cho nhân viên, bao gồm thông tin cá nhân và thông tin về các chấm công.
-   - **Thuộc tính**: `mãNhânViên`, `tên`, `danhSáchChấmCông`.
+1. **NhanVien (Employee)**: Đại diện cho nhân viên, bao gồm thông tin cá nhân và thông tin về các chấm công.
+   - **Thuộc tính**: `maNhanVien`, `ten`, `danhSachChamCong`.
    - **Nhiệm vụ**: Quản lý thông tin chấm công và cung cấp chức năng thêm, sửa, xóa chấm công.
 
-2. **Chấm Công (Timecard)**: Chịu trách nhiệm lưu trữ thông tin chấm công của nhân viên.
-   - **Thuộc tính**: `ngày`, `sốGiờ`, `mãChiPhí`.
+2. **ChamCong (Timecard)**: Chịu trách nhiệm lưu trữ thông tin chấm công của nhân viên.
+   - **Thuộc tính**: `ngay`, `soGio`, `maChiPhi`.
    - **Nhiệm vụ**: Lưu trữ và xử lý thông tin về giờ làm việc của nhân viên.
 
-3. **Quản Lý Chấm Công (TimecardManager)**: Thực hiện các thao tác quản lý chấm công cho nhân viên.
-   - **Thuộc tính**: `danhSáchChấmCông`.
+3. **QuanLyChamCong (TimecardManager)**: Thực hiện các thao tác quản lý chấm công cho nhân viên.
+   - **Thuộc tính**: `danhSachChamCong`.
    - **Nhiệm vụ**: Cung cấp các phương thức để thêm, sửa, và xóa chấm công.
 
-4. **Dữ Liệu Chấm Công (TimecardData)**: Tầng truy cập dữ liệu cho các thông tin chấm công.
-   - **Thuộc tính**: `cơSởDữLiệu`.
+4. **DuLieuChamCong (TimecardData)**: Tầng truy cập dữ liệu cho các thông tin chấm công.
+   - **Thuộc tính**: `coSoDuLieu`.
    - **Nhiệm vụ**: Thực hiện các thao tác lưu trữ và truy xuất dữ liệu chấm công từ cơ sở dữ liệu.
-
 ### Biểu Đồ Sequence
-![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aO9Vnk55UM6PXrVbSHK09JAJCmiIyqeK0aiVxbgSvtDuhtF6mrrBSvqFRybBHr60IzpbuUxrFfaFTxUN8glWGbYZe6k7rNGhXPACmwjoaKGqDBcmAGGPWAhluQw5-QZwq9JZiAy8A4gSVLXzPQMGSsn3AQe1M1NYTaB5uON9Va21jNa-GAFmE00HVk1m0eew7LwOx_rmr_uIi1QWLeVKl1HWl080003__mC0)
+![](https://www.planttext.com/api/plantuml/png/T94nJWCn44Lxds8km0LIe8XDkI2XH8XsSAnufFLiMCO5TIuGYPA656cG8b5GnGM54VVm2RW2taX1E5eAovBd_J__oz_XO_mWs8btZHAIni05fR3oyBbEuGccvjuRrWOgX6aAEvYaiEK5N2Anv0CpSaPZDrSAjRGTN5da6pAibjcKD2sH1QuzSlrOMNHLoujYDF4r6Jyu-drKHrCuEp_n6i7CnbS7sgRzDb_nFVCbqel-u6c_QGiSN0hFD20geusW_dhpvQAI64ft6pSQE6js34sl5njVsFuRzDZqqAiFTnTpN3bqBAHgR7ZUVzeF0000__y30000)
 ### Biểu Đồ lớp
-![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bToJc9niO9Vnk55UM6PXrVbALHpAIWev1vUZ12oKWWkAShCImT9bA3nKnBpCe8FBqpESCvuk6jfhlFXBNdfLWe-cSKbDaWYTborN52Ra4GXLkMb7rvGQQNWabYI2k8MFzmzqJtpuUwvLWef-QL9EQbGvpXdP0Pa75uBjnjkO63fmrsBytmExyKmcLYtWRoLSNXLBfAWXgQLGbb-PWhKHMiJSSXL7DwCLGhkEfU7kzVx0BtJNehXlEHZ2uCVxfwFK84ShZd7DfJYiBEagBGo0kZffILe2h26EbBCwkhQ8GS_5zQG8reHLfznEQJcfO2I5G000F__0m00)
+![](https://www.planttext.com/api/plantuml/png/X991IiL038RtSueiBVWkKEJni4KtLPIAk0tjq0csCzB9W4LSUG71fMkNdc0MRhn8J-0LV5AdprQn0rdaJqY-9FFXtpQMiMNNrC9UauRMM2cOk9PmIBr_SF3-sFido7h_V0C9GjxxLqXx_w8hE47Il3Mue4OMs9P253LQ2wSAzIL93NS2lbw3GOaXvvPqDUWy5qhKAiT29GgRnEWgXemi7mHtBUv3Yo255hh2BeOKMGw-DSTaOZYg3NA0I1ITAHexZhNE7UgicrTSP1b6KB89qbunfWOf-gPnk9nqQtP9lpUs_sF4QCUUkeoacxCN9ZT3PBhVshbb3cvTT-MG_u69_ZhCUFNLQZtM5BFbJc8p-4bCRAGkj__o4m00__y30000)
+## 5. Hợp Nhất Kết Quả Phân Tích
 
+## 1. Tóm Tắt
 
+Trong hệ thống Payroll System, chúng ta đã phân tích hai ca sử dụng chính: **Payment** và **Maintain Timecard**. Mỗi ca sử dụng này có các lớp phân tích riêng, nhưng cũng có sự liên kết chặt chẽ giữa chúng để đảm bảo tính đồng bộ trong việc quản lý thông tin nhân viên và quy trình thanh toán.
+
+## 2. Các Ca Sử Dụng
+
+### 2.1 Ca Sử Dụng Payment
+
+- **Mục tiêu**: Tính toán và xử lý thanh toán cho nhân viên dựa trên thông tin lương và phương thức thanh toán đã chọn.
+- **Các lớp phân tích**:
+  1. **NhanVien (Employee)**
+     - **Thuộc tính**: `maNhanVien`, `ten`, `phuongThucThanhToan`, `luongTheoGio`, `luongCoDinh`, `tyLeHoaHong`.
+     - **Nhiệm vụ**: Cung cấp thông tin cần thiết để tính toán lương.
+  
+  2. **BangLuong (Payroll)**
+     - **Thuộc tính**: `ngayThanhToan`, `tongLuong`.
+     - **Nhiệm vụ**: Tính toán tổng lương dựa trên thông tin từ lớp Nhân Viên.
+  
+  3. **PhuongThucThanhToan (PaymentMethod)**
+     - **Thuộc tính**: `loaiPhuongThuc`.
+     - **Nhiệm vụ**: Quản lý các phương thức thanh toán cho nhân viên.
+  
+  4. **XuLyThanhToan (PaymentProcessor)**
+     - **Thuộc tính**: `maGiaoDich`, `trangThai`.
+     - **Nhiệm vụ**: Thực hiện giao dịch thanh toán và cập nhật trạng thái giao dịch.
+
+### 2.2 Ca Sử Dụng Maintain Timecard
+
+- **Mục tiêu**: Quản lý thông tin chấm công của nhân viên, bao gồm việc thêm, sửa và xóa chấm công.
+- **Các lớp phân tích**:
+  1. **NhanVien (Employee)**
+     - **Thuộc tính**: `maNhanVien`, `ten`, `danhSachChamCong`.
+     - **Nhiệm vụ**: Quản lý thông tin chấm công và cung cấp chức năng thêm, sửa, xóa chấm công.
+  
+  2. **ChamCong (Timecard)**
+     - **Thuộc tính**: `ngay`, `soGio`, `maChiPhi`.
+     - **Nhiệm vụ**: Lưu trữ và xử lý thông tin về giờ làm việc của nhân viên.
+  
+  3. **QuanLyChamCong (TimecardManager)**
+     - **Thuộc tính**: `danhSachChamCong`.
+     - **Nhiệm vụ**: Cung cấp các phương thức để thêm, sửa, và xóa chấm công.
+  
+  4. **DuLieuChamCong (TimecardData)**
+     - **Thuộc tính**: `coSoDuLieu`.
+     - **Nhiệm vụ**: Thực hiện các thao tác lưu trữ và truy xuất dữ liệu chấm công từ cơ sở dữ liệu.
+
+## 3. Mối Quan Hệ Giữa Các Ca Sử Dụng
+
+Hai ca sử dụng này liên kết với nhau qua lớp **NhanVien (Employee)**. Trong ca sử dụng Payment, thông tin về lương của nhân viên được tính toán dựa trên các chấm công mà lớp **ChamCong (Timecard)** lưu trữ. Do đó, việc quản lý thông tin chấm công thông qua ca sử dụng Maintain Timecard sẽ ảnh hưởng trực tiếp đến quá trình thanh toán trong ca sử dụng Payment.
+
+### 3.1 Sơ Đồ Tương Tác Giữa Các Lớp
+
+![](https://www.planttext.com/api/plantuml/png/V97DIiGm58NtUOhBxFi68eCTS1DbP8AulMH26wQz7PfaKTHt45owwiAbw3uB5qhV8q_WAzWAanhyMGIIxnxkEOTy-DUbiTXQLrVCx3H1snZ5hBQLWitGm_jTyFSWXfUXfmB4Mo_XL0V_Z91FTnxymvwnFSeT5WeMES8c-2TO1VyuwjVOrOhi0guPWApG63WlaIwreWXEa0hk6YeYMPVJKvHEYb5SYWPdzPNZtKnl_xO-GqrsF21qhIIsstz3v2NM-VSC5mw9Tp_mod6jNCIZ_s4L7DrasRmuje8iEvxnBzLIGT8l7HrSKve6_Ph5U6dQTCQMYhRJhxDF0000__y30000)
