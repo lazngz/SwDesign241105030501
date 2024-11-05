@@ -1,4 +1,24 @@
 
+## Phân tích các ca sử dụng trong hệ thống Payroll System
+1. **Maintain Timecard (Quản lý Thẻ Chấm Công)**: 
+   - Nhân viên có thể tạo, sửa, hoặc xóa thông tin thẻ chấm công để ghi lại giờ làm việc.
+   - Hệ thống xác minh dữ liệu nhập, kiểm tra trùng lặp và cập nhật thông tin trong cơ sở dữ liệu.
+
+2. **Generate Paycheck (Tạo Phiếu Lương)**:
+   - Tầng xử lý nghiệp vụ chính, bao gồm tính lương và quản lý logic liên quan.
+   - Thao tác này bao gồm tính các khoản khấu trừ, thuế, và lợi ích.
+3. **View Paycheck (Xem Phiếu Lương)**:
+   - Nhân viên có thể xem phiếu lương chi tiết của mình trong hệ thống.
+   - Hệ thống cung cấp chi tiết về các khoản lương, khấu trừ, và tổng số thanh toán.
+
+4. **Access Employee Reports (Truy Cập Báo Cáo Nhân Viên)**:
+   - Quản lý có thể xem các báo cáo chi tiết theo từng nhân viên.
+   - Bao gồm báo cáo về giờ làm việc, doanh số, và phiếu lương.
+5. **Integration with Project Management DB2 (Tích Hợp với Cơ Sở Dữ Liệu Quản Lý Dự Án)**:
+   - Hệ thống tự động kết nối với cơ sở dữ liệu DB2 để lấy thông tin dự án và giờ làm việc.
+   - Quản lý thời gian và tài nguyên được phối hợp từ dữ liệu này để đảm bảo tính chính xác.
+
+## code Java mô phỏng ca sử dụng Maintain Timecard.
 ```java
 import java.util.ArrayList;
 import java.util.List;
