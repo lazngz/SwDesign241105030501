@@ -1,4 +1,4 @@
-# Các Bước Thiết Kế Ca Sử Dụng (Use Case Design)
+# thiết kế các ca sử dụng cho hệ thống "Payroll System"
 
 ## 1. Xác định các Ca sử dụng (Use Cases)
 
@@ -7,6 +7,9 @@
 - **View Payroll**: Xem phiếu lương đã được tạo.
 - **Generate Reports**: Tạo báo cáo cho các nhân viên hoặc cho quản lý.
 - **Employee Information Management**: Quản lý thông tin của nhân viên.
+- 
+![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aO9Vnk55UV5XcOTNvIaa5YluXK750qiVxbgS5-zpU2z8ED27YwkqE3KviJXLGSdvuQwr1Gfv6K2gHA44IErMI0QIItCLaWzloKjN0ca8TJRaul8BKz3LjGEn5QmKd3CUxkxDmwAUAz07IHd4NeKSeBrOb8BKWDGgUJpStGvIi7iYo48hXOZ32vCXJifJA3kyG27ds8PIXPI7kzShv6G2bPPoEQJcfO1y3G000F__0m00)
+
   
 
 ## 2. Mô tả chi tiết từng Ca sử dụng
@@ -57,6 +60,8 @@
     2. Nhân viên hoặc quản lý chỉnh sửa thông tin cá nhân.
     3. Hệ thống xác nhận và lưu thay đổi.
 
+![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aO9Vnk55UV5XcOTNvIaa5YluXK750qiVxbgS5-zpU2z8ED27gm2eBJCvio0nhqJ1u-7kzlYGZ8Ux9-QbSt7vXIdesg68ALWf79bmf1d8oCjuk6jj0NObpa1MRvv22L39ReLa8BaqLo7vy1QWaTYLWqo265W2qhHxRgP2UcPYdaBEuGMv2cMPGDN9N2XwCCtmERQXL27buUxr2ZaWzQLS3gbvAQ30u080003__mC0)
+
 ## 3. Tài liệu giải thích lý do thiết kế
 
 ### 3.1. Maintain Timecard
@@ -73,4 +78,5 @@
 
 ### 3.5. Employee Information Management
 - Việc quản lý thông tin nhân viên là cần thiết để hệ thống có thể xử lý đúng các yếu tố như tính lương, báo cáo, và các quyền lợi khác. Đây là một tính năng cơ bản và cần thiết trong hệ thống Payroll.
+- ![](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aO9Vnk55UV5XcOTNvIaa5YluXK750qiVxbgS5-zpU2z8ED27gm2eBJCvio0nhqJ1u-7kzlYGZ8Ux9-QbSt7vXIdesg68ALWf79bmf1d8oCjuk6jj0NObpa1MPrw6Gl73tMiJ5Keo3cy12fTavYaa7ru8r0Xq5nUA3amJV8vjA0LgJAnKE3BnuUwfcLnSWJu4tO9L2GtSuf2Qbm8APm00003__mC0)
 
