@@ -1,96 +1,90 @@
+# Thiết Kế Lớp - Hệ Thống Payroll System
 
-# THIẾT KẾ LỚP HỆ THỐNG PAYROLL SYSTEM
+## Mục lục
 
-## 1. **Lớp Employee (Nhân Viên)**
-https://www.planttext.com/api/plantuml/png/Z5JBRjGm5DtdAwwoeLIQHRSHgeeqIAs4r3B33xZELMBas94VWqQeQnPiO8dOm0gnG7n05YocFv8lw2_WnB4R3zEgk_ZSw-DxZezpr_qzquOeOnkUPS_WzdFVVH8rYAg-_KM0xdvGu7tthONDxZkOslRTLmfczzlrqBxxIQ3kku-kq7TVH0LNPAiavx3UQeDDbb5Ej8PNJSlb5X4-P00Bm6bvKHQmDeg9QeG5QJ01IcpTO0qAay2jrCmmAHBGi0OfKQKku3NJviNRQNtggW3QNZVC1EmeD1SGeES5R2Ghn-ODm_UJZXMsKfcZUTMs9J4O52tH4CPrxBW9aWFnuvA7GIwSaAMZ77P4yDAQVLGQmi-bLKxXKjfhxc5tTyRgUo7hSJrEIWcdbWySSMkYXBIjaXjCC8Nla1uI7BrxKAa_UT8RnefQ0QvGbEuxmLxw4Se4N8qppC1uL4ZNevvgmedQ9YQv8zJWwl_sZQuwMX-oM9YPjnxf4aTYxNBYJQeL2bIkU3X2KSlvoh-HFJ4Xlo5WfpxodYiK9sgVRUSWHQqdxD0DFp7t_kwVq7mp_2ZUM2ByswzOt_sP_ogo-DxpanoE5ml8Z_Fx5r50JNGMzSzxuiO26Y98XG_qXI0KqMsTHVxOU9BlXzCVdPsvA0x_kty0003__mC0
-### **Thuộc Tính (Attributes):**
-- `employeeId` (String): Mã nhân viên, duy nhất.
-- `name` (String): Tên nhân viên.
-- `department` (String): Phòng ban của nhân viên.
-- `position` (String): Chức vụ của nhân viên.
-- `timecards` (List<Timecard>): Danh sách các thẻ chấm công của nhân viên.
-
-### **Operations (Phép Toán):**
-- `submitTimecard(timecard: Timecard): void`: Nhân viên gửi thẻ chấm công mới.
-- `viewPayrollReport(): void`: Nhân viên xem báo cáo lương của mình.
-- `updateEmployeeDetails(): void`: Cập nhật thông tin nhân viên.
-
-### **Quan Hệ (Relationships):**
-- Một **Employee** có thể có nhiều **Timecard**.
-- Quan hệ: `Employee "1" *-- "*" Timecard : has`
+1. [Giới thiệu](#giới-thiệu)
+2. [Các lớp trong hệ thống](#các-lớp-trong-hệ-thống)
+3. [Biểu đồ lớp](#biểu-đồ-lớp)
+4. [Biểu đồ trạng thái](#biểu-đồ-trạng-thái)
+5. [Phụ thuộc và quan hệ kết hợp](#phụ-thuộc-và-quan-hệ-kết-hợp)
 
 ---
 
-## 2. **Lớp Timecard (Thẻ Chấm Công)**
+## Giới thiệu
 
-### **Thuộc Tính (Attributes):**
-- `employeeId` (String): Mã nhân viên.
-- `timeIn` (DateTime): Thời gian vào làm.
-- `timeOut` (DateTime): Thời gian ra về.
-- `totalHours` (Double): Tổng số giờ làm.
-- `status` (TimecardStatus): Trạng thái thẻ chấm công (Pending, Approved, Rejected).
+Hệ thống **Payroll System** giúp quản lý thông tin nhân viên, chấm công, tính lương và tạo báo cáo lương. Mỗi nhân viên có thể có nhiều phiếu chấm công, mỗi phiếu chấm công sẽ được duyệt và tính lương. Hệ thống này cũng hỗ trợ tạo báo cáo lương cho nhân viên.
 
-### **Operations (Phép Toán):**
-- `calculateTotalHours(): void`: Tính tổng số giờ làm của thẻ chấm công.
-- `approve(): void`: Phê duyệt thẻ chấm công.
-- `reject(): void`: Từ chối thẻ chấm công.
-- `updateTimecard(): void`: Cập nhật thông tin thẻ chấm công.
 
-### **Trạng Thái (States):**
-- `Pending`: Thẻ chấm công đang chờ duyệt.
-- `Approved`: Thẻ chấm công đã được phê duyệt.
-- `Rejected`: Thẻ chấm công đã bị từ chối.
+## Các lớp trong hệ thống
+![](https://www.planttext.com/api/plantuml/png/b5L1Rjim4Bph5GjVQXTnq5w58WXI5qY050tY03tJujPcIv42IQKrYhwWbzxxWhx1XrxoaRmWNmX5aHGbAmvoq-uETtPdbzJ3xl-fDaIPkkJPAxZxSx_xBJOWrfkxVmJu_Uvl1H_AYiijObPmedKquMS6C0T6SrWQnSJQcOAKs7DGkSfXGGmwgvAQ6IP53w899sfhKLYmad3dCwp4WYYgSxXashoxyVP9PiC0XDBWcGPe3i4ro-5MCkgG1U55pIt_qh5CPoaFm1fDQ6Y1XZ2k6qGi3g2kQ7TOuFTblzYKokQwylqbINvbNhXGdHSEFUr5Ny26BH5i8skbFqlr3MbV87cBgkdyl07qGtQWfjOnQojOLIbx98gMrgtmAnPcD1JL--JfhiYUXBfUbMpyk5LawOePqyEcKfBpmtACxORiQYbHcC7Ya1yBf7NHRbaQ4NOy94drP8DDqc6J4NUJvDzV9e7AOdndGocy-z2U3I2jatep3vA5l4Cfhx6IodX1gzRNt1v_Xppgn8MLmowwRUjrq6PwKGCsVXrpEcNQ7GRumhX1rGRFjYxitfoE_0XGqCwS3GkEZTeeMH6D7uaWQrI-rK8AWNxYx-DtDhpWPziBEktUAyiIdpQtnoIv7uSVbGOQXknrtXjEDzJ0CWqxtX6F2-pLVxb8yMsUl9t0V0wJDyV7hoVTovF3XkYdKE4-vd4BT1PyeqY_RYb-E9_-kKYSG-a0pnr82jT6gcVnNGiUdfrQpPf_soC0003__mC0)
+### 1. Lớp `Employee` (Nhân viên)
 
-### **Quan Hệ (Relationships):**
-- **Timecard** có một trạng thái **TimecardStatus**.
-- Quan hệ: `Timecard "1" *-- "1" TimecardStatus : has`
+- **Thuộc tính**:
+  - `id`: Mã nhân viên (String)
+  - `name`: Tên nhân viên (String)
+  - `dob`: Ngày sinh (Date)
+  - `position`: Chức vụ (String)
+  - `salary`: Lương cơ bản (Decimal)
+  - `timecards`: Danh sách các phiếu chấm công (List<Timecard>)
 
----
+- **Operations**:
+  - `addTimecard(Timecard)`: Thêm phiếu chấm công cho nhân viên.
+  - `calculateSalary()`: Tính lương của nhân viên dựa trên giờ làm việc.
+  - `getEmployeeDetails()`: Lấy thông tin chi tiết của nhân viên.
 
-## 3. **Lớp Payroll (Bảng Lương)**
+### 2. Lớp `Timecard` (Phiếu chấm công)
 
-### **Thuộc Tính (Attributes):**
-- `employeeId` (String): Mã nhân viên.
-- `salary` (Double): Lương cơ bản của nhân viên.
-- `overtimeHours` (Double): Số giờ làm thêm của nhân viên.
-- `totalPayment` (Double): Tổng số tiền phải trả cho nhân viên (lương cơ bản + làm thêm).
+- **Thuộc tính**:
+  - `employeeId`: Mã nhân viên (String)
+  - `date`: Ngày làm việc (Date)
+  - `hoursWorked`: Số giờ làm việc (Decimal)
+  - `overtimeHours`: Số giờ làm thêm (Decimal)
+  - `status`: Trạng thái phiếu chấm công (String, ví dụ: "Approved", "Pending")
 
-### **Operations (Phép Toán):**
-- `calculateSalary(): void`: Tính lương cơ bản của nhân viên.
-- `calculateOvertime(): void`: Tính số tiền làm thêm của nhân viên.
-- `generatePayrollReport(): void`: Tạo báo cáo lương cho nhân viên.
+- **Operations**:
+  - `approveTimecard()`: Duyệt phiếu chấm công.
+  - `rejectTimecard()`: Từ chối phiếu chấm công.
 
----
+### 3. Lớp `Payroll` (Phiếu lương)
 
-## 4. **Lớp HRSystem (Hệ Thống Quản Lý Nhân Sự)**
+- **Thuộc tính**:
+  - `employeeId`: Mã nhân viên (String)
+  - `salary`: Lương cơ bản (Decimal)
+  - `overtimePayment`: Tiền làm thêm (Decimal)
+  - `taxDeduction`: Khấu trừ thuế (Decimal)
+  - `netPay`: Lương sau thuế (Decimal)
 
-### **Thuộc Tính (Attributes):**
-- `employees` (List<Employee>): Danh sách tất cả nhân viên.
-- `payrolls` (List<Payroll>): Danh sách tất cả bảng lương của nhân viên.
+- **Operations**:
+  - `calculateOvertimePayment()`: Tính tiền làm thêm.
+  - `calculateTaxDeduction()`: Tính khấu trừ thuế.
+  - `generatePayroll()`: Tạo phiếu lương cho nhân viên.
 
-### **Operations (Phép Toán):**
-- `processPayroll(): void`: Xử lý bảng lương cho tất cả nhân viên.
-- `approveTimecard(timecard: Timecard): void`: Duyệt thẻ chấm công của nhân viên.
-- `rejectTimecard(timecard: Timecard): void`: Từ chối thẻ chấm công của nhân viên.
+### 4. Lớp `PayrollReport` (Báo cáo lương)
 
-### **Quan Hệ (Relationships):**
-- **HRSystem** quản lý nhiều **Employee** và nhiều **Payroll**.
-- Quan hệ: `HRSystem "1" *-- "*" Employee : manages`
-- Quan hệ: `HRSystem "1" *-- "*" Payroll : generates`
+- **Thuộc tính**:
+  - `payrollList`: Danh sách phiếu lương (List<Payroll>)
+  - `reportDate`: Ngày báo cáo (Date)
 
----
+- **Operations**:
+  - `generateReport()`: Tạo báo cáo lương cho một kỳ cụ thể.
+  - `getPayrollDetails()`: Lấy thông tin chi tiết về các phiếu lương.
 
-## 5. **Biểu Đồ Trạng Thái (State Diagram)**
+### 5. Lớp `DatabaseManager` (Quản lý cơ sở dữ liệu)
 
-### **Trạng Thái Timecard**
+- **Thuộc tính**:
+  - `connection`: Kết nối cơ sở dữ liệu (Connection)
 
-- `Pending`: Thẻ chấm công chưa được duyệt.
-- `Approved`: Thẻ chấm công đã được phê duyệt.
-- `Rejected`: Thẻ chấm công bị từ chối.
+- **Operations**:
+  - `getEmployeeById(String id)`: Lấy thông tin nhân viên theo mã nhân viên.
+  - `saveTimecard(Timecard timecard)`: Lưu phiếu chấm công vào cơ sở dữ liệu.
+  - `savePayroll(Payroll payroll)`: Lưu phiếu lương vào cơ sở dữ liệu.
+## Biểu đồ Trạng thái
+![](https://www.planttext.com/api/plantuml/png/b5DBJiCm4Dtx5BFZ8_K2NQ1Mm89TLB53A1hiAHZv4zcJIZqR2ux45N2SZv8q5MNdUPzvut7oy_MzYOo1Qsl45JpGNZi2_Y18A5C4T0eue8kQjNSHzZx0ixOaCIZnSliAgzNT09G5EQNTkn1pP2hRLbNm1rAm1coFFNLzyuTrHvyaELj3FewSuZHWQRfaZVMRrRmKElI_r7acDAtcJDE6kNZL1Hw3DsROT5UNzu6IHman0wOYDB8soEtaigkeezFiIy9nWm9ri-YgBPjgPChalo_qQ2lZZqJ3ZNgWt4hM1n9Y1an5JmvRT0rCmMgNWdeopNQgMuZ8dqwcfsQnIQ_S_0U_0000__y30000)
+## Biểu đồ lớp
+![](https://www.planttext.com/api/plantuml/png/Z5JDQjmm4BxxAOOzRG8RsgieIsWsq41BInFeULOQ73MoP2GvT2bziXpoI7c5o5h9Apd9fZVDp3S_tpTZFpqydZkFrW-TQhX2v-2owvNP4S7V1c05KZ2uzbRgDfeQEweSmcmPRD1Jj7hZf9T6Ln272kqke8ZB3bNqUTaHHoiSWw_I-KytoLw7A00AaHtBZ6IGNISCxeqK4SbHyK65zjUnoVAaR0FGaizyDkHHAZSYqcp_caGv5qwKAMLSrTH5w59GlJM3TR-ClIDHKpFtPCUXluo0EXIazeChgWQgVMz3naIt96VfDt7_8ZJD_GDtrYXrVEpNrCyZXW8TQJzR3VxPa1ZuVezbH9CF6RN2qmA-rpNdcvXmDqNvb-lIP0Cc4NkJyK_gZVM9Tx_tZMUKZYcXrZ5i8tPJBk_GQ5-e4hsD9CVy8nSJ2k4M7Nr3ZItPD0atMbFIxM9wpm_ny-vAB0-VLQYU8n7fiBY6uyS_GhDKIGMM9IgacxxenSS5h5PhM7muEpjT7CwUmIswPZ9JE293nfJEO4lAwDQ1DwyN3Szya_kQsPfrhjV8G6gk1a4YF9gvjBFKOfek8jnx6GND_ymuSCW9pJbfCVuZdm400F__0m00)
+## Biểu đồ thuộc tính
+![](https://www.planttext.com/api/plantuml/png/Z9FFIiGm4CRlVOhGex07hqMMnJ-W8AkmWkTfCxh1_2d9PA68J-R1H_8LJ7VJxBQfOc_vPZBzVL-dtvzVAqTWoIjPD1ASOpUgbQP3PEy52y-2OHJkUCKsP8L-ZGKD2YSI1yA7bqjXQLknwt28Ed1kqRb9Txir6jTUrMWd5LGWv4JR2elzoD7WrZX1mkX9R_14Vlew1n9i5wuRNqiiFehe-4aeRC3ov9YYa3d-DOfzXXaSQfvfP0ZahV7MFHlxXZpX_0NkQoM8y7HQed-4pXef4tnxEF-VFLx8I6jmk1b75Wj6zuWZpUpGzh45cabbRpYNPuq658MQvcnU6TM2xfBDvd3Et4HzdU-cD0tChCgGIs2v5uukXlrVZkCPoZ7kPK-MVfNol6IB1IlFokCoLKo1XbTqist3LwkOnGR5BhGD3a-wqiqgOivs7MS9vtoOj0gBr__GFm000F__0m00)
+## Biểu đồ phụ thuộc, quan hệ kết hợp
+![](https://www.planttext.com/api/plantuml/png/Z5JBIiD05DtdAuPi124Bjq5AiGeAKeKAhc-IQpDq7d4UXI2k_GQN8lw4NNJXb_GB_0KdxIHj7efPX9bppxrppisTVA_MOsr06SjPa3BGcbpmWiaIaJm5n3qHGGzSPJ6P6KN5t0S4SEn06HYyUJYZokGnENSRZqEMATIwmovoAN1gUOAg4q4Eb7Mmd2giIhOA5r9JGwNeS9qdOxl7QM2WIfSkRS8mU0wyuplACGMLDOwD1tgEVst5jeSzSIYo7cQa0NOfhTBtKYqmQ-Jy9Tmcd1g3XzKQzRTGAibO8xxOxV-ltIVqb2QWSTPkcGz8KKbiONA9gcgRKzE9R0ttuK6ZJWf7OOPiJYGlG9IDpNItxxdn-BG_cqocC30gTL-SbckgpMaz_wDsU-gmR_UeKdP49bzlANcq84Y-MRsGnUPpRQhbUn47pKKAJq8IHIGy3lUZ5XCE0kQe1sdrDus9mXJfqj5g_mUi9ZFs9WPP-rfKQ-igzMKNxlr1J6utgzSq3kgCA1eTdf5XuGPQ4oc2niRlbB5RL3-L7m000F__0m00)
 
-```plaintext
-[*] --> Pending
-Pending --> Approved : approve()
-Pending --> Rejected : reject()
-Approved --> [*]
-Rejected --> [*]
+
